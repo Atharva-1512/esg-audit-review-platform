@@ -1,0 +1,111 @@
+# BreatheESG Ingestion & Review Platform
+
+A complete, production-ready prototype for the BreatheESG internship assignment. This platform ingests multi-format ESG data (SAP fuel CSVs, utility billing CSVs, and corporate travel JSONs), normalizes them into a unified canonical schema, calculates GHG emissions in kg CO2e, flags suspicious activity, and enables analysts to edit, approve, and audit-lock records.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Backend**: Django 5.x + Django REST Framework (DRF)
+- **Database**: PostgreSQL (Production) / SQLite (Local development auto-fallback)
+- **Frontend**: React 18 (Vite-based SPA)
+- **Styling**: Vanilla CSS (Slate dark-theme, glassmorphism, responsive grid layout)
+
+---
+
+## 📂 Repository Contents
+
+- `/esg_project/` - Django configuration directory.
+- `/ingestion/` - Django app containing ESG models, REST serializers, ViewSets, and normalization logic.
+- `/frontend/` - React application (Vite template).
+- `MODEL.md` - Technical documentation of database schema and normalization formulas.
+- `DECISIONS.md` - Key engineering choices and questions for the Product Manager.
+- `TRADEOFFS.md` - Explicit trade-offs and deliberate design omissions.
+- `SOURCES.md` - Analysis of the three ingestion streams, sample data rows, and failure modes.
+
+---
+
+## ⚡ Quick Start Instructions
+
+Follow these steps to run the application locally on Windows (Powershell).
+
+### 1. Setup & Run Backend
+
+1. **Activate the Virtual Environment**:
+   ```powershell
+   .venv\Scripts\Activate.ps1
+   ```
+   *(If on macOS/Linux, run `source .venv/bin/activate`)*
+
+2. **Apply Migrations**:
+   ```powershell
+   python manage.py makemigrations ingestion
+   python manage.py migrate
+   ```
+
+3. **Seed Database**:
+   Seed the database with realistic ESG data (including messy dates, outlier values, validation failures, and duplicates):
+   ```powershell
+   python manage.py seed_data
+   ```
+
+4. **Run Unit Tests**:
+   Execute the automated test suite checking unit conversions and approval locks:
+   ```powershell
+   python manage.py test ingestion
+   ```
+
+5. **Start Dev Server**:
+   Launch the Django server (defaults to port `8000`):
+   ```powershell
+   python manage.py runserver
+   ```
+   The backend API is now accessible at `http://localhost:8000/api/`.
+
+---
+
+### 2. Setup & Run Frontend
+
+1. **Open a new terminal window** and navigate to the frontend folder:
+   ```powershell
+   cd frontend
+   ```
+
+2. **Install Dependencies**:
+   ```powershell
+   npm install
+   ```
+
+3. **Start Development Server**:
+   ```powershell
+   npm run dev
+   ```
+   Open your browser to the URL output in the terminal (typically `http://localhost:5173`).
+
+---
+
+## 🕵️‍♂️ Analyst Walkthrough Guide
+
+Once the app is running in your browser:
+
+1. **Dashboard & Tenant Switcher**:
+   - Use the **Active Client** dropdown in the sidebar to switch between tenants (e.g., "BreatheESG Enterprises").
+   - View aggregate emissions (Scope 1, 2, 3 in kg CO2e) and progress counters.
+2. **Batch Uploading**:
+   - Under **Quick Ingest** (Dashboard) or **Batch Uploads** (Sidebar), choose a source type (e.g., SAP Fuel CSV).
+   - Upload sample CSVs or paste mock JSON directly to watch validation and normalization execute in real-time.
+3. **Review Queue**:
+   - Go to the **Review Queue** tab.
+   - Click a record in the table. An **Inspect & Approve** side panel will slide in.
+   - Compare the **Raw Payload Ingested** on the left with the **Normalized Data Fields** on the right.
+4. **Correction Workflow**:
+   - Select a record that says **FAIL** (failed validation due to negative value or bad date) or **SUSP** (suspicious due to high usage or duplicates).
+   - Click **Edit & Correct**.
+   - Modify fields (e.g. adjust value or fix the date) and type a **Reason for Modification** (mandatory for audit tracking).
+   - Click **Save & Update**. The backend automatically clears the failure flag, recalculates CO2e, and logs an `EDIT` event.
+5. **Approve & Lock**:
+   - Write a comment in the text area and click **Approve & Lock**.
+   - Notice the status badge updates to **Approved** and the lock status updates to **Locked**.
+   - Click **Edit & Correct** again; the system blocks edits since the record is locked for audit.
+6. **Audit History Log**:
+   - Check the **Audit History & Trail** timeline inside the panel. It shows a list of changes, usernames, timestamps, and key-value diffs.
