@@ -1,0 +1,8 @@
+Purchase_Date,Fuel_Type,Quantity,Unit,Vendor,Invoice_Number
+2026-05-01,Diesel,1200.50,Liters,Shell Commercial,INV-FUEL-101
+05/12/2026,Petrol,250.0,Gallons,Chevron Corp,INV-FUEL-102
+2026-05-18,Diesel,15000,Liters,BP Fueling Services,INV-FUEL-103
+2026/05/20,Hydrogen H2,400.0,Liters,CleanEnergy Co,INV-FUEL-104
+2026-05-22,Diesel,-150,Liters,Shell Commercial,INV-FUEL-105
+not-a-valid-date,Diesel,800.0,Liters,BP Fueling Services,INV-FUEL-106
+2026-05-24,Diesel,750.0,Liters,Shell Commercial,INV-FUEL-101

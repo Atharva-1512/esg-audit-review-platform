@@ -1,0 +1,56 @@
+[
+  {
+    "trip_id": "T-10001",
+    "employee_id": "EMP-41",
+    "departure_airport": "JFK",
+    "arrival_airport": "LHR",
+    "distance_miles": 3450,
+    "class": "Economy",
+    "booking_date": "2026-05-02"
+  },
+  {
+    "trip_id": "T-10002",
+    "employee_id": "EMP-92",
+    "departure_airport": "SFO",
+    "arrival_airport": "NRT",
+    "distance_miles": 5150,
+    "class": "Business",
+    "booking_date": "05/04/2026"
+  },
+  {
+    "trip_id": "T-10003",
+    "employee_id": "EMP-102",
+    "departure_airport": "SIN",
+    "arrival_airport": "JFK",
+    "distance_miles": 14500,
+    "class": "First",
+    "booking_date": "2026-05-08"
+  },
+  {
+    "trip_id": "T-10004",
+    "employee_id": "EMP-12",
+    "departure_airport": "JFK-NY",
+    "arrival_airport": "LHR-LDN",
+    "distance_miles": 3450,
+    "class": "Economy",
+    "booking_date": "2026-05-10"
+  },
+  {
+    "trip_id": "",
+    "employee_id": "EMP-41",
+    "departure_airport": "JFK",
+    "arrival_airport": "LHR",
+    "distance_miles": 3450,
+    "class": "Economy",
+    "booking_date": "2026-05-12"
+  },
+  {
+    "trip_id": "T-10001",
+    "employee_id": "EMP-23",
+    "departure_airport": "CDG",
+    "arrival_airport": "FRA",
+    "distance_miles": 280,
+    "class": "Economy",
+    "booking_date": "2026-05-14"
+  }
+]
