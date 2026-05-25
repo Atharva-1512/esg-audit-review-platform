@@ -144,6 +144,11 @@ body {
   transition: var(--transition-smooth);
 }
 
+.select-input option {
+  background-color: #0f1320; /* Solid dark background matching --bg-secondary */
+  color: #f8fafc; /* Solid white text matching --text-primary */
+}
+
 .select-input:focus {
   outline: none;
   border-color: var(--color-primary);
