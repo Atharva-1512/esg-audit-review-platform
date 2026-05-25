@@ -4,6 +4,13 @@ A complete, production-ready prototype for the BreatheESG internship assignment.
 
 ---
 
+## 🌐 Deployed Application Links
+
+- **Live Frontend Portal**: [https://esg-backend.onrender.com](https://esg-backend.onrender.com)
+- **Live Backend API**: [https://esg-audit-review-platform.onrender.com](https://esg-audit-review-platform.onrender.com)
+
+---
+
 ## 🛠️ Tech Stack & Architecture
 
 - **Backend**: Django 5.x + Django REST Framework (DRF)
